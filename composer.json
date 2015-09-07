@@ -1,5 +1,5 @@
 {
-    "name": "sandyandi/test-uploaded-file-factory",
+    "name": "sandyandi/test-uploadedfile-factory",
     "description": "UploadedFile Factory for Testing",
     "type": "library",
     "require": {
@@ -19,5 +19,6 @@
         "psr-4": {
           "Sandyandi\\TestUploadedFileFactory\\": "src/TestUploadedFileFactory/"
         }
-    }
+    },
+    "minimum-stability": "dev"
 }
