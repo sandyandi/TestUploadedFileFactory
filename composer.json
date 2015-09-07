@@ -1,0 +1,24 @@
+{
+    "name": "sandyandi/test-uploaded-file-factory",
+    "description": "UploadedFile Factory for Testing",
+    "type": "library",
+    "require": {
+        "symfony/http-foundation": "2.7.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.0"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sandyandi N. dela Cruz",
+            "email": "sandyandi.delacruz@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+          "Sandyandi\\TestUploadedFileFactory\\": "src/TestUploadedFileFactory/"
+        }
+    }
+}
