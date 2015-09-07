@@ -26,9 +26,10 @@
             "url": "https://github.com/sandyandi/test-uploadedfile-factory"
         }
     ],
+    "minimum-stability": "dev",
     "extra": {
         "branch-alias": {
-            "dev-master": "1.0.x-dev"
+            "dev-master": "1.0.1-dev"
         }
     }
 }
