@@ -20,5 +20,15 @@
           "Sandyandi\\TestUploadedFileFactory\\": "src/TestUploadedFileFactory/"
         }
     },
-    "minimum-stability": "dev"
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/sandyandi/test-uploadedfile-factory"
+        }
+    ],
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
+    }
 }
