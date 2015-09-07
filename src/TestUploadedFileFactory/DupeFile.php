@@ -1,6 +1,6 @@
 <?php
 
-namespace Sandyandi\TestUploadFileFactory;
+namespace Sandyandi\TestUploadedFileFactory;
 
 use Symfony\Component\HttpFoundation\File\Exception\FileNotFoundException;
 use Symfony\Component\HttpFoundation\File\Exception\AccessDeniedException;

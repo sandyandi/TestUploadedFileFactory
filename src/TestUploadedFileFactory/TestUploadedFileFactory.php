@@ -27,7 +27,7 @@ class TestUploadedFileFactory
         if (!is_file($path)) throw new FileNotFoundException($path);
         if (!is_readable($path)) throw new AccessDeniedException($path);
 
-        $dupeFile = $this->createDupeFile($path)
+        $dupeFile = $this->createDupeFile($path);
 
         $this->dupePaths[] = $dupeFile->getPath();
 
