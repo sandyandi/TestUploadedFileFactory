@@ -20,7 +20,7 @@ By default, it will use the `/tmp` directory located in `vendor/sandyandi/test-u
 $workDir = 'path/to/your/work/dir';
 $testUploadedFileFactory = new TestUploadedFileFactory($workDir);
 ```
-** Note**: make sure the working directory is writeable.
+**Note:** make sure the working directory is writeable.
 
 #### Object creation
 Once the factory has been instantiated, you can create an `UploadedFile` instance by doing the following:
