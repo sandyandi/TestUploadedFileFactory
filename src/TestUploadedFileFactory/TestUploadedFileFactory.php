@@ -15,7 +15,7 @@ class TestUploadedFileFactory
     /**
      * @var array
      */
-    private $dupePaths = [];
+    private $dupeFiles = [];
 
     public function __construct($dupeFilesDir = '')
     {
@@ -29,25 +29,25 @@ class TestUploadedFileFactory
 
         $dupeFile = $this->createDupeFile($path);
 
-        $this->dupePaths[] = $dupeFile->getPath();
+        $this->dupeFiles[] = $dupeFile;
 
         return new UploadedFilePublisher($dupeFile, $this);
     }
 
     protected function createDupeFile($path)
     {
-        $ext = pathinfo($path, PATHINFO_EXTENSION);
+        $filename = basename($path);
 
         do {
-            $dupeFilename = uniqid() . '.' . $ext;
-            $dupeFilePath = $this->uploadedFilesDir($dupeFilename);
-        } while (is_file($dupeFilePath));
+            $dupeDir = $this->uploadedFilesDir(uniqid());
+            $dupePath = $dupeDir . DIRECTORY_SEPARATOR . $filename;
+        } while (is_file($dupePath));
 
-        if (copy($path, $dupeFilePath)) {
-            return new DupeFile($dupeFilePath);
+        if (@mkdir($dupeDir) and @copy($path, $dupePath)) {
+            return new DupeFile($dupePath);
         }
 
-        throw new AccessDeniedException($dupeFilePath);
+        throw new AccessDeniedException($dupePath);
     }
 
     protected function uploadedFilesDir($path)
@@ -55,20 +55,15 @@ class TestUploadedFileFactory
         return $this->dupeFilesDir . ($path ? DIRECTORY_SEPARATOR . $path : $path);
     }
 
-    public function move(DupeFile $dupeFile, $directory, $name)
-    {
-        foreach ($this->dupePaths as $i => $dupePath) {
-            if ($dupePath === $dupeFile->getPath()) {
-                $movePath = rtrim($directpry, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . $name;
-                $this->dupePaths[$i] = $movePath;
-
-                break;
-            }
-        }
-    }
-
     public function tearDown()
     {
-        foreach ($this->dupePaths as $dupePath) @unlink($dupePath);
+        foreach ($this->dupeFiles as $dupeFile) {
+            if ($dupeFile->isMoved()) {
+                @unlink($dupeFile->getMovePath());
+            } else {
+                @unlink($dupeFile->getPath());
+                @rmdir(str_replace($dupeFile->getOriginalName(), '', $dupeFile->getPath()));
+            }
+        }
     }
 }

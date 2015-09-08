@@ -28,6 +28,16 @@ class DupeFile
      */
     private $size;
 
+    /**
+     * @var boolean
+     */
+    private $isMoved = false;
+
+    /**
+     * @var string
+     */
+    private $movePath;
+
     public function __construct($path)
     {
         $mimeTypeGuesser = MimeTypeGuesser::getInstance();
@@ -56,5 +66,23 @@ class DupeFile
     public function getSize()
     {
         return $this->size;
+    }
+
+    public function move($directory, $name)
+    {
+        @rmdir(str_replace($this->getOriginalName(), '', $this->getPath()));
+
+        $this->movePath = $directory . DIRECTORY_SEPARATOR . $name;
+        $this->isMoved = true;
+    }
+
+    public function getMovePath()
+    {
+        return $this->movePath;
+    }
+
+    public function isMoved()
+    {
+        return $this->isMoved;
     }
 }
