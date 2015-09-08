@@ -25,7 +25,7 @@ class UploadedFilePublisher extends UploadedFile
         );
     }
 
-    public function move($directory, $name)
+    public function move($directory, $name = null)
     {
         if ($move = parent::move($directory, $name))
             $this->dupeFile->move($directory, $name);
