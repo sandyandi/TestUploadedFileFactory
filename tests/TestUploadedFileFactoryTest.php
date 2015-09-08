@@ -1,6 +1,7 @@
 <?php
 
 use Sandyandi\TestUploadedFileFactory\TestUploadedFileFactory;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class TestUploadedFileFactoryTest extends \PHPUnit_Framework_TestCase
 {
@@ -18,6 +19,7 @@ class TestUploadedFileFactoryTest extends \PHPUnit_Framework_TestCase
     {
         $uploadedFile = $this->testUploadedFileFactory->create(__DIR__ . '/test-file.txt');
 
+        $this->assertInstanceOf('Symfony\Component\HttpFoundation\File\UploadedFile', $uploadedFile);
         $this->assertFileExists($uploadedFile->getPathname());
 
         $this->testUploadedFileFactory->tearDown();
