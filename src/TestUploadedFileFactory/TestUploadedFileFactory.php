@@ -19,7 +19,7 @@ class TestUploadedFileFactory
 
     public function __construct($dupeFilesDir = '')
     {
-        $this->dupeFilesDir = ($dupeFilesDir ? rtrim($dupeFilesDir, DIRECTORY_SEPARATOR) : __DIR__ . '/../../dupe-files');
+        $this->dupeFilesDir = ($dupeFilesDir ? rtrim($dupeFilesDir, DIRECTORY_SEPARATOR) : __DIR__ . '/../../tmp');
     }
 
     public function create($path)
